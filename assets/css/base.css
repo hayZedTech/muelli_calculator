@@ -1,0 +1,138 @@
+/* ===== RESET ===== */
+*,
+*::before,
+*::after {
+    box-sizing:border-box;
+}
+html {
+    scroll-behavior:smooth;
+}
+body {
+    margin:0;
+    font-family:var(--font-family);
+    font-size:var(--font-size-md);
+    font-weight:var(--font-weight-normal);
+    color:var(--text);
+    background:var(--background);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+    width:min(92%,var(--container-width));
+    margin-inline:auto;
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin:0;
+    color:var(--text);
+    line-height:1.2;
+    letter-spacing:-.02em;
+}
+h1 {
+    font-size:clamp(2.6rem,5vw,4rem);
+    font-weight:800;
+}
+h2 {
+    font-size:clamp(1.8rem,3vw,2.4rem);
+    font-weight:700;
+}
+h3 {
+    font-size:1.25rem;
+    font-weight:600;
+}
+p {
+    margin:0;
+    color:var(--text-light);
+    font-size:1rem;
+    line-height:1.8;
+}
+small {
+    color:var(--text-light);
+}
+
+/* ===== LINKS ===== */
+a {
+    color:inherit;
+    text-decoration:none;
+    transition:var(--transition);
+}
+a:hover {
+    color:var(--primary);
+}
+
+/* ===== BUTTONS ===== */
+button {
+    font:inherit;
+    transition:var(--transition);
+}
+
+/* ===== FORM ELEMENTS ===== */
+input,
+select,
+textarea {
+    font:inherit;
+}
+input::placeholder {
+    color:#9CA3AF;
+}
+
+/* ===== HEADER ===== */
+.site-header {
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(12px);
+    box-shadow:var(--shadow-xs);
+    border-bottom:1px solid var(--border-light);
+    padding:18px 0;
+}
+
+/* ===== HERO ===== */
+.hero {
+    padding:80px 0 60px;
+    text-align:center;
+}
+.hero h1 {
+    max-width:900px;
+    margin:0 auto 24px;
+}
+.hero p {
+    max-width:760px;
+    margin:auto;
+    font-size:1.12rem;
+}
+
+/* ===== SECTIONS ===== */
+section {
+    margin-bottom:70px;
+}
+
+/* ===== FOOTER ===== */
+.site-footer {
+    margin-top:80px;
+    padding:40px 0;
+    text-align:center;
+    background:#fff;
+    border-top:1px solid var(--border-light);
+}
+.site-footer p {
+    color:var(--text-light);
+}
+
+/* ===== DISCLAIMER ===== */
+.disclaimer {
+    padding:60px 0 20px;
+}
+.disclaimer p {
+    max-width:900px;
+    margin:auto;
+    text-align:center;
+    font-size:.96rem;
+}

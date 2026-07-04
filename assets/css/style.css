@@ -1,0 +1,128 @@
+/* ===== MÜELLI CALCULATOR - Premium Fintech Theme ===== */
+
+/* ===== PAGE BACKGROUND ===== */
+
+
+@font-face {
+    font-family:"AncizarSans" ;
+    src:url("/assets/fonts/AncizarSans-Regular.ttf");
+}
+
+body {
+    background:
+        radial-gradient(circle at top right,#dbeafe 0%,transparent 35%),
+        radial-gradient(circle at bottom left,#d1fae5 0%,transparent 30%),
+        var(--background);
+        font-family:"AncizarSans" ;
+}
+
+/* ===== HERO ===== */
+.hero {
+    max-width:900px;
+    margin:auto;
+}
+.hero h1 {
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+}
+.hero p {
+    font-size:1.1rem;
+}
+
+/* ===== CALCULATOR ===== */
+.calculator {
+    align-items:start;
+}
+.calculator-inputs {
+    position:relative;
+}
+.calculator-results {
+    overflow:visible;
+    height:auto;
+    max-height:none;
+}
+.calculator-section {
+    width:100%;
+    overflow:visible;
+    height:auto;
+}
+
+/* ===== CARD HOVER ===== */
+.result-card,
+.info-card,
+.guide-body {
+    transition:.3s ease;
+}
+.result-card:hover,
+.info-card:hover,
+.guide-body:hover {
+    transform:translateY(-4px);
+}
+
+/* ===== SUMMARY ===== */
+.summary-card {
+    position:relative;
+    overflow:hidden;
+}
+.summary-card::before {
+    content:"";
+    position:absolute;
+    width:220px;
+    height:220px;
+    right:-90px;
+    top:-90px;
+    border-radius:50%;
+    background:rgba(255,255,255,.08);
+}
+.summary-card::after {
+    content:"";
+    position:absolute;
+    width:120px;
+    height:120px;
+    left:-30px;
+    bottom:-30px;
+    border-radius:50%;
+    background:rgba(255,255,255,.05);
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+    backdrop-filter:blur(18px);
+}
+
+/* ===== HEADER ===== */
+.site-header {
+    backdrop-filter:blur(18px);
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+    width:10px;
+}
+::-webkit-scrollbar-track {
+    background:#eef2f7;
+}
+::-webkit-scrollbar-thumb {
+    background:#b8c2d0;
+    border-radius:20px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background:var(--primary);
+}
+
+/* ===== SELECTION ===== */
+::selection {
+    background:var(--primary);
+    color:#fff;
+}
+
+/* ===== SMOOTH ===== */
+* {
+    transition:
+        background-color .25s,
+        border-color .25s,
+        color .25s,
+        box-shadow .25s;
+}
