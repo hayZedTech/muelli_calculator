@@ -4,56 +4,53 @@ import { initializeAnimations } from "./ui/animations.js";
 import { DEFAULTS } from "./config/defaults.js";
 
 const routes = {
-    hero: "assets/sections/hero.html",
-    calculator: "assets/sections/calculator.html",
-    guide: "assets/sections/guide.html",
-    faq: "assets/sections/faq.html",
-    contact: "assets/sections/contact.html",
-    about: "assets/sections/about.html"
+    hero: "assets/sections/landing.html"
 };
 
 let currentPage = "hero";
 
 function syncActiveLinks(page) {
     document.querySelectorAll(".sidebar-nav a").forEach(link => {
-        link.classList.toggle("active", link.dataset.page === page);
+        link.classList.toggle("active", link.dataset.page === page || link.getAttribute("href") === "#hero");
     });
 }
 
 function initCalculatorDefaults() {
-
     const purchasePrice = document.getElementById("purchase-price");
     if (!purchasePrice) return;
 
-    document.getElementById("region").value = DEFAULTS.region;
-    document.getElementById("deposit").value = DEFAULTS.depositPercent;
-    document.getElementById("mortgage-years").value = DEFAULTS.mortgageYears;
-    document.getElementById("interest-rate").value = DEFAULTS.interestRate;
+    const region = document.getElementById("region");
+    const deposit = document.getElementById("deposit");
+    const mortgageYears = document.getElementById("mortgage-years");
+    const interestRate = document.getElementById("interest-rate");
+
+    if (region) region.value = DEFAULTS.region;
+    if (deposit) deposit.value = DEFAULTS.depositPercent;
+    if (mortgageYears) mortgageYears.value = DEFAULTS.mortgageYears;
+    if (interestRate) interestRate.value = DEFAULTS.interestRate;
 
     const type = DEFAULTS.propertyType;
+    const propertyNew = document.getElementById("property-new");
+    const propertyResale = document.getElementById("property-resale");
 
-    document.getElementById("property-new").checked = type === "new";
-    document.getElementById("property-resale").checked = type !== "new";
+    if (propertyNew) propertyNew.checked = type === "new";
+    if (propertyResale) propertyResale.checked = type !== "new";
 
     initializeEvents();
 }
 
 export async function loadPage(page = "hero", pushState = true) {
-
     const container = document.getElementById("page-content");
     if (!container) return;
 
     const file = routes[page] || routes.hero;
 
     try {
-
         const res = await fetch(file);
         if (!res.ok) throw new Error(res.status);
 
         container.innerHTML = await res.text();
-
         currentPage = page;
-
         syncActiveLinks(page);
 
         if (pushState) {
@@ -61,26 +58,16 @@ export async function loadPage(page = "hero", pushState = true) {
         }
 
         requestAnimationFrame(() => {
-
             initializeAnimations();
-
-            if (page === "calculator") {
-                initCalculatorDefaults();
-            }
-
-            if (page === "faq") {
-                initializeFaq();
-            }
-
+            initCalculatorDefaults();
+            initializeFaq();
         });
-
     } catch (e) {
-
-        container.innerHTML = `<section class="info-section"><h2>Page not found</h2></section>`;
+        container.innerHTML = `<section class="info-section"><h2>Seite nicht gefunden</h2></section>`;
         console.error(e);
     }
 }
 
-window.addEventListener("popstate", (e) => {
-    loadPage(e.state?.page || "hero", false);
+window.addEventListener("popstate", () => {
+    loadPage("hero", false);
 });

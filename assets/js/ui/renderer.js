@@ -11,6 +11,8 @@ export function renderResults(result) {
         "notary-result": result.fees.notary,
         "registry-result": result.fees.registry,
         "legal-result": result.fees.legal,
+        "nie-result": result.nieSetup,
+        "mortgage-cost-result": result.mortgageCosts,
 
         "loan-result": result.loanAmount,
         "mortgage-result": result.monthlyMortgage,
@@ -18,7 +20,8 @@ export function renderResults(result) {
         "purchase-price-result": result.purchasePrice,
         "purchase-cost-result": result.purchaseCosts,
         "cash-required-result": result.cashRequired,
-        "grand-total-result": result.grandTotal
+        "grand-total-result": result.grandTotal,
+        "zone-total-result": result.zoneTotal
 
     };
 

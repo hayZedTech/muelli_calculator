@@ -1,0 +1,322 @@
+<section class="hero-section" id="hero">
+    <div class="container hero-grid">
+        <div class="hero-copy">
+            <span class="eyebrow">Ihr Tor zum Süden</span>
+            <h1>Der sichere Weg zu Ihrer Immobilie in Andalusien</h1>
+            <p>Der exklusive und unabhängige Ratgeber für Käufer aus Deutschland, Österreich und der Schweiz. Planen Sie Ihren Immobilienkauf an der Costa del Sol und Costa de la Luz sicher und fundiert.</p>
+            <div class="hero-actions">
+                <a href="#calculator" class="btn btn-primary">Kosten berechnen</a>
+                <a href="#regions" class="btn btn-secondary">Regionen entdecken</a>
+            </div>
+            <div class="hero-pills">
+                <span class="pill">Costa del Sol</span>
+                <span class="pill">Costa de la Luz</span>
+                <span class="pill">NIE &amp; Kaufprozess</span>
+            </div>
+        </div>
+
+        <div class="hero-card">
+            <span class="eyebrow accent">Kaufkosten-Rechner</span>
+            <h3>Verschaffen Sie sich einen detaillierten Überblick über die Nebenkosten beim Immobilienkauf in Andalusien.</h3>
+            <div class="stat-list">
+                <div class="stat-item">
+                    <strong>+ 10–14 %</strong>
+                    <span>Geschätzte Zusatzkosten</span>
+                </div>
+                <div class="stat-item">
+                    <strong>ITP / IVA / AJD</strong>
+                    <span>Steuern und Abgaben</span>
+                </div>
+                <div class="stat-item">
+                    <strong>Notar &amp; Anwalt</strong>
+                    <span>Rechtliche und amtliche Kosten</span>
+                </div>
+            </div>
+            <p class="hero-note">Die Berechnung dient nur zur Orientierung und ersetzt keine anwaltliche oder steuerliche Beratung.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section-block" id="calculator">
+    <div class="container">
+        <div class="section-heading">
+            <span class="eyebrow">Kaufkosten-Rechner</span>
+            <h2>Ihre Angaben</h2>
+            <p>Wählen Sie Ihre Wunschregion, Ihren Immobilientyp und Ihre Finanzierung aus, um die geschätzten Nebenkosten direkt zu vergleichen.</p>
+        </div>
+
+        <div class="calculator-shell">
+            <div class="calculator-inputs">
+                <h2>Schritt 1 &amp; 2</h2>
+
+                <div class="input-group">
+                    <label for="purchase-price">Kaufpreis der Immobilie (€)</label>
+                    <input type="number" id="purchase-price" placeholder="500000" min="0">
+                </div>
+
+                <div class="input-group">
+                    <label for="region">Kaufregion auswählen</label>
+                    <select id="region"></select>
+                </div>
+
+                <div class="input-group">
+                    <label for="zone">Zone / Gemeinde auswählen</label>
+                    <select id="zone">
+                        <option>Tarifa</option>
+                        <option>Barbate / Zahara de los Atunes</option>
+                        <option>Vejer</option>
+                        <option selected>Chiclana</option>
+                        <option>Conil</option>
+                        <option>Cádiz</option>
+                        <option>El Puerto de Santa María</option>
+                        <option>Sanlúcar de Barrameda</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Käufer-Status</label>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" id="buyer-resident" name="buyer-status" value="resident" checked>
+                            <span>Resident (in Spanien)</span>
+                        </label>
+                        <label>
+                            <input type="radio" id="buyer-non-resident" name="buyer-status" value="non-resident">
+                            <span>Nicht-Resident</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Art der Immobilie</label>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" id="property-resale" name="property-type" value="resale" checked>
+                            <span>Gebrauchtimmobilie</span>
+                        </label>
+                        <label>
+                            <input type="radio" id="property-new" name="property-type" value="new">
+                            <span>Neubau / Off-Plan</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Finanzierung</label>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" id="finance-equity" name="financing" value="equity" checked>
+                            <span>Eigenkapital</span>
+                        </label>
+                        <label>
+                            <input type="radio" id="finance-mortgage" name="financing" value="mortgage">
+                            <span>Spanische Hypothek</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="deposit">Eigenkapital (%)</label>
+                    <input type="number" id="deposit" value="20" min="0" max="100">
+                </div>
+
+                <div class="input-group">
+                    <label for="mortgage-years">Laufzeit (Jahre)</label>
+                    <select id="mortgage-years">
+                        <option>10</option>
+                        <option>15</option>
+                        <option>20</option>
+                        <option selected>25</option>
+                        <option>30</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="interest-rate">Zinssatz (%)</label>
+                    <input type="number" id="interest-rate" value="3.5" step="0.01">
+                </div>
+
+                <div class="calculator-actions">
+                    <button type="button" id="reset-calculator" class="btn btn-secondary">Zurücksetzen</button>
+                    <button type="button" id="export-pdf" class="btn btn-primary">PDF exportieren</button>
+                </div>
+            </div>
+
+            <div class="calculator-results">
+                <div class="result-card">
+                    <h3>Geschätzte Nebenkosten</h3>
+                    <div class="result-row"><span>ITP</span><span id="itp-result">€0.00</span></div>
+                    <div class="result-row"><span>Mehrwertsteuer (VAT)</span><span id="vat-result">€0.00</span></div>
+                    <div class="result-row"><span>AJD</span><span id="ajd-result">€0.00</span></div>
+                    <div class="result-row"><span>NIE &amp; Non-Resident Setup</span><span id="nie-result">€0.00</span></div>
+                </div>
+
+                <div class="result-card">
+                    <h3>Gebühren</h3>
+                    <div class="result-row"><span>Notar</span><span id="notary-result">€0.00</span></div>
+                    <div class="result-row"><span>Grundbuch</span><span id="registry-result">€0.00</span></div>
+                    <div class="result-row"><span>Anwaltskosten</span><span id="legal-result">€0.00</span></div>
+                    <div class="result-row"><span>Hypothekenkosten</span><span id="mortgage-cost-result">€0.00</span></div>
+                </div>
+
+                <div class="result-card">
+                    <h3>Hypothek</h3>
+                    <div class="result-row"><span>Darlehensbetrag</span><span id="loan-result">€0.00</span></div>
+                    <div class="result-row"><span>Monatliche Rate</span><span id="mortgage-result">€0.00</span></div>
+                </div>
+
+                <div class="result-card summary-card">
+                    <h3>Zusammenfassung</h3>
+                    <div class="result-row"><span>Kaufpreis</span><span id="purchase-price-result">€0.00</span></div>
+                    <div class="result-row"><span>Gesamte Kaufkosten</span><span id="purchase-cost-result">€0.00</span></div>
+                    <div class="result-row"><span>Benötigtes Eigenkapital</span><span id="cash-required-result">€0.00</span></div>
+                    <div class="result-row"><span>Gesamtpreis</span><span id="grand-total-result">€0.00</span></div>
+                    <div class="result-row"><span>Gesamte Nebenkosten in Chiclana</span><span id="zone-total-result">€0.00</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-block" id="regions">
+    <div class="container">
+        <div class="section-heading">
+            <span class="eyebrow">Regionen</span>
+            <h2>Wo möchten Sie Ihr neues Lebensgefühl genießen?</h2>
+            <p>Entdecken Sie, welche Region Andalusiens perfekt zu Ihren Wünschen, Ihrem Lebensstil und Ihrem Budget passt.</p>
+        </div>
+
+        <div class="region-grid">
+            <article class="region-card">
+                <h3>Málaga / Torremolinos / Benalmádena</h3>
+                <p>Lebendig, urban und kulturell mit Großstadtflair.</p>
+            </article>
+            <article class="region-card">
+                <h3>Fuengirola / Mijas</h3>
+                <p>Familienfreundlich, international und wunderbar entspannt.</p>
+            </article>
+            <article class="region-card">
+                <h3>Marbella / Nueva Andalucía / Golden Mile</h3>
+                <p>Luxuriös, exklusiv und unvergleichlich elegant.</p>
+            </article>
+            <article class="region-card">
+                <h3>Estepona / New Golden Mile</h3>
+                <p>Authentisch andalusisch, gepaart mit modernem Luxus.</p>
+            </article>
+            <article class="region-card">
+                <h3>Benahavís / La Quinta / Los Arqueros</h3>
+                <p>Exklusiv, friedvoll und im Einklang mit der Natur.</p>
+            </article>
+            <article class="region-card">
+                <h3>Sotogrande</h3>
+                <p>Diskret, sportlich und ein Refugium der Extraklasse.</p>
+            </article>
+            <article class="region-card">
+                <h3>Tarifa</h3>
+                <p>Bohème, sportlich und erfrischend unkonventionell.</p>
+            </article>
+            <article class="region-card">
+                <h3>Cádiz / Chiclana / Conil</h3>
+                <p>Ursprünglich spanisch und ein kulinarisches Paradies.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="section-block" id="process">
+    <div class="container">
+        <div class="section-heading">
+            <span class="eyebrow">Kaufablauf</span>
+            <h2>Ein strukturierter und sicherer Prozess ist entscheidend</h2>
+            <p>So funktioniert der Immobilienkauf in Andalusien – Schritt für Schritt, transparent und gut vorbereitet.</p>
+        </div>
+
+        <div class="process-grid">
+            <article class="step-card">
+                <div class="step-number">01</div>
+                <h3>Vorbereitung &amp; NIE-Nummer</h3>
+                <p>Beantragung der spanischen Steuernummer (NIE) und Eröffnung eines spanischen Bankkontos.</p>
+            </article>
+            <article class="step-card">
+                <div class="step-number">02</div>
+                <h3>Objektsuche &amp; Prüfung</h3>
+                <p>Besichtigungen und erste rechtliche Prüfung durch einen unabhängigen Anwalt.</p>
+            </article>
+            <article class="step-card">
+                <div class="step-number">03</div>
+                <h3>Reservierung</h3>
+                <p>Zahlung einer Reservierungsgebühr, meist 6.000 €, um das Objekt vom Markt zu nehmen.</p>
+            </article>
+            <article class="step-card">
+                <div class="step-number">04</div>
+                <h3>Privater Kaufvertrag</h3>
+                <p>Zahlung von 10 % des Kaufpreises nach positiver rechtlicher Prüfung.</p>
+            </article>
+            <article class="step-card">
+                <div class="step-number">05</div>
+                <h3>Notartermin</h3>
+                <p>Unterzeichnung der öffentlichen Kaufurkunde und Zahlung des Restbetrags.</p>
+            </article>
+            <article class="step-card">
+                <div class="step-number">06</div>
+                <h3>Nachbereitung</h3>
+                <p>Ummeldung von Wasser, Strom, Grundsteuer und Eintragung ins Grundbuch.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="section-block" id="checklist">
+    <div class="container">
+        <div class="section-heading">
+            <span class="eyebrow">Checkliste</span>
+            <h2>Ihre Käufer-Checkliste</h2>
+            <p>Verlieren Sie nie den Überblick. Diese essenziellen Schritte sichern Ihren Immobilienkauf ab.</p>
+        </div>
+
+        <div class="checklist-grid">
+            <div class="checklist-item"><i class="fas fa-check"></i><div><strong>Unabhängigen Rechtsanwalt beauftragen</strong></div></div>
+            <div class="checklist-item"><i class="fas fa-check"></i><div><strong>NIE-Nummer beantragt</strong></div></div>
+            <div class="checklist-item"><i class="fas fa-check"></i><div><strong>Spanisches Bankkonto eröffnet</strong></div></div>
+            <div class="checklist-item"><i class="fas fa-check"></i><div><strong>Budget inkl. Nebenkosten festgelegt</strong></div></div>
+            <div class="checklist-item"><i class="fas fa-check"></i><div><strong>Finanzierung vorgeklärt</strong></div></div>
+            <div class="checklist-item"><i class="fas fa-check"></i><div><strong>Nota Simple geprüft</strong></div></div>
+            <div class="checklist-item"><i class="fas fa-check"></i><div><strong>Urbanistische Legalität verifiziert</strong></div></div>
+            <div class="checklist-item"><i class="fas fa-check"></i><div><strong>Schuldenfreiheit der Immobilie bestätigt</strong></div></div>
+        </div>
+    </div>
+</section>
+
+<section class="section-block" id="buyer-types">
+    <div class="container">
+        <div class="section-heading">
+            <span class="eyebrow">Käufer-Typ</span>
+            <h2>Welcher Käufertyp sind Sie?</h2>
+            <p>Finden Sie heraus, welche Prioritäten für Ihr persönliches Immobilienprojekt in Andalusien wirklich zählen.</p>
+        </div>
+
+        <div class="buyer-grid">
+            <article class="buyer-card"><h3>Familien &amp; Auswanderer</h3><p>Für Familien, die Schulen, Alltag, Sicherheit und Infrastruktur im Blick haben.</p></article>
+            <article class="buyer-card"><h3>Ruhestand in Andalusien</h3><p>Für Käufer, die Komfort, medizinische Versorgung und Alltagstauglichkeit berücksichtigen.</p></article>
+            <article class="buyer-card"><h3>Ferienimmobilie zur Eigennutzung</h3><p>Für Käufer, die eine Immobilie für Urlaub, Wochenenden oder mehrere Monate im Jahr suchen.</p></article>
+            <article class="buyer-card"><h3>Zweitwohnsitz mit Perspektive</h3><p>Für Käufer, die heute einen Zweitwohnsitz suchen und später dauerhaft leben möchten.</p></article>
+            <article class="buyer-card"><h3>Leben &amp; Arbeiten</h3><p>Für Selbständige, Unternehmer und Remote Worker, die Spanien als neuen Lebensmittelpunkt wählen.</p></article>
+            <article class="buyer-card"><h3>Kapitalanleger</h3><p>Für Käufer, die eine Immobilie mit Blick auf Vermietbarkeit, Wertentwicklung oder Rendite suchen.</p></article>
+            <article class="buyer-card"><h3>Neubau-Käufer</h3><p>Für Käufer, die sich für Neubauprojekte und Off-Plan-Angebote interessieren.</p></article>
+            <article class="buyer-card"><h3>Sanierung &amp; Spezialprojekte</h3><p>Für Käufer, die ein Haus mit Potenzial, eine Finca oder ein besonderes Projekt suchen.</p></article>
+        </div>
+    </div>
+</section>
+
+<section class="section-block" id="consultation">
+    <div class="container">
+        <div class="cta-card">
+            <div>
+                <span class="eyebrow accent">Beratung anfragen</span>
+                <h2>Bereit für den nächsten Schritt?</h2>
+                <p>Nutzen Sie unsere kostenfreie Erstberatung. Wir analysieren Ihre Wünsche und besprechen eine sichere Strategie für Ihren Immobilienkauf in Andalusien.</p>
+            </div>
+            <a href="#hero" class="btn btn-secondary">Kostenfreie Beratung anfragen</a>
+        </div>
+    </div>
+</section>

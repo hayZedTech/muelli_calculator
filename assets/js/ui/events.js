@@ -11,26 +11,21 @@ export function initializeEvents() {
 
     const purchasePrice = document.getElementById("purchase-price");
     const region = document.getElementById("region");
-    REGIONS.forEach(({ id, name }) => {
-
-    const option = document.createElement("option");
-    option.value = id;
-    option.textContent = name;
-    region.appendChild(option);
-
-});
-
+    const zone = document.getElementById("zone");
     const deposit = document.getElementById("deposit");
     const mortgageYears = document.getElementById("mortgage-years");
     const interestRate = document.getElementById("interest-rate");
 
     const propertyTypes = document.querySelectorAll("input[name='property-type']");
+    const buyerStatuses = document.querySelectorAll("input[name='buyer-status']");
+    const financingOptions = document.querySelectorAll("input[name='financing']");
     const resetButton = document.getElementById("reset-calculator");
     const exportButton = document.getElementById("export-pdf");
 
     if (
         !purchasePrice ||
         !region ||
+        !zone ||
         !deposit ||
         !mortgageYears ||
         !interestRate ||
@@ -39,12 +34,28 @@ export function initializeEvents() {
         return;
     }
 
+    if (region.dataset.initialized === "true") {
+        return;
+    }
+
+    region.innerHTML = "";
+    REGIONS.forEach(({ id, name }) => {
+        const option = document.createElement("option");
+        option.value = id;
+        option.textContent = name;
+        region.appendChild(option);
+    });
+    region.dataset.initialized = "true";
+
     function saveCalculator() {
 
         const data = {
             purchasePrice: purchasePrice.value,
             region: region.value,
+            zone: zone.value,
             propertyType: document.querySelector("input[name='property-type']:checked")?.value,
+            buyerStatus: document.querySelector("input[name='buyer-status']:checked")?.value,
+            financing: document.querySelector("input[name='financing']:checked")?.value,
             depositPercent: deposit.value,
             mortgageYears: mortgageYears.value,
             interestRate: interestRate.value
@@ -66,12 +77,19 @@ export function initializeEvents() {
 
             purchasePrice.value = data.purchasePrice ?? "";
             region.value = data.region ?? DEFAULTS.region;
+            zone.value = data.zone ?? "Chiclana";
             deposit.value = data.depositPercent ?? DEFAULTS.depositPercent;
             mortgageYears.value = data.mortgageYears ?? DEFAULTS.mortgageYears;
             interestRate.value = data.interestRate ?? DEFAULTS.interestRate;
 
             propertyTypes.forEach((radio) => {
                 radio.checked = radio.value === data.propertyType;
+            });
+            buyerStatuses.forEach((radio) => {
+                radio.checked = radio.value === data.buyerStatus;
+            });
+            financingOptions.forEach((radio) => {
+                radio.checked = radio.value === data.financing;
             });
 
         } catch (error) {
@@ -90,7 +108,10 @@ export function initializeEvents() {
         const data = {
             purchasePrice: Number(purchasePrice.value || 0),
             region: region.value,
+            zone: zone.value,
             propertyType: selectedPropertyType,
+            buyerStatus: document.querySelector("input[name='buyer-status']:checked")?.value,
+            financing: document.querySelector("input[name='financing']:checked")?.value,
             depositPercent: Number(deposit.value || 0),
             mortgageYears: Number(mortgageYears.value || 0),
             interestRate: Number(interestRate.value || 0)
@@ -120,12 +141,19 @@ export function initializeEvents() {
 
         purchasePrice.value = "";
         region.value = DEFAULTS.region;
+        zone.value = "Chiclana";
         deposit.value = DEFAULTS.depositPercent;
         mortgageYears.value = DEFAULTS.mortgageYears;
         interestRate.value = DEFAULTS.interestRate;
 
         propertyTypes.forEach((radio) => {
             radio.checked = radio.value === DEFAULTS.propertyType;
+        });
+        buyerStatuses.forEach((radio) => {
+            radio.checked = radio.value === "resident";
+        });
+        financingOptions.forEach((radio) => {
+            radio.checked = radio.value === "equity";
         });
 
         localStorage.removeItem(STORAGE_KEY);
@@ -156,9 +184,20 @@ export function initializeEvents() {
     });
 
     propertyTypes.forEach((radio) => {
-
         radio.addEventListener("change", debouncedUpdate);
+    });
 
+    buyerStatuses.forEach((radio) => {
+        radio.addEventListener("change", debouncedUpdate);
+    });
+
+    financingOptions.forEach((radio) => {
+        radio.addEventListener("change", debouncedUpdate);
+    });
+
+    [zone].forEach((element) => {
+        element.addEventListener("input", debouncedUpdate);
+        element.addEventListener("change", debouncedUpdate);
     });
 
     if (resetButton && !resetButton.dataset.bound) {
