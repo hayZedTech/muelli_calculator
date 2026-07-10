@@ -1,0 +1,51 @@
+:root {
+    --primary:#3A4F3D;
+    --primary-dark:#2E3E31;
+    --primary-hover:#516A51;
+    --secondary:#C5A866;
+    --success:#4C7C5A;
+    --warning:#B67C2A;
+    --danger:#A94E3D;
+
+    --background:#F4F1EA;
+    --surface:#FFFDF8;
+    --white:#FFFFFF;
+    --text:#1A1A1A;
+    --text-light:#5D5A54;
+    --border:#E4DCCB;
+    --border-light:#F4EDE1;
+
+    --font-family:"Inter", Arial, Helvetica, sans-serif;
+    --font-size-xs:12px;
+    --font-size-sm:14px;
+    --font-size-md:16px;
+    --font-size-lg:20px;
+    --font-size-xl:30px;
+    --font-size-xxl:42px;
+    --font-weight-normal:400;
+    --font-weight-medium:500;
+    --font-weight-semibold:600;
+    --font-weight-bold:700;
+    --font-weight-black:800;
+
+    --space-xs:8px;
+    --space-sm:12px;
+    --space-md:20px;
+    --space-lg:32px;
+    --space-xl:56px;
+    --space-xxl:80px;
+
+    --radius-sm:8px;
+    --radius-md:14px;
+    --radius-lg:20px;
+    --radius-xl:28px;
+    --radius-round:999px;
+
+    --shadow-xs:0 1px 3px rgba(26,26,26,.06);
+    --shadow-sm:0 10px 24px rgba(26,26,26,.08);
+    --shadow-md:0 16px 40px rgba(26,26,26,.1);
+    --shadow-lg:0 24px 60px rgba(26,26,26,.12);
+
+    --transition:all .25s ease;
+    --container-width:1280px;
+}

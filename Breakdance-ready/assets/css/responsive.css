@@ -1,0 +1,31 @@
+/* ===== TABLET ===== */
+@media(max-width:992px) {
+    .calculator {
+        grid-template-columns:1fr;
+    }
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:768px) {
+    section {
+        padding:50px 0;
+    }
+    h1 {
+        font-size:32px;
+    }
+    h2 {
+        font-size:24px;
+    }
+    .calculator-inputs,
+    .result-card {
+        padding:20px;
+    }
+}
+
+/* ===== SMALL MOBILE ===== */
+@media(max-width:480px) {
+    .radio-group {
+        flex-direction:column;
+        gap:10px;
+    }
+}
