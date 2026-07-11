@@ -15,28 +15,13 @@ async function loadPartial(id, file) {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-
     await loadPartial("sidebar-container", "assets/partials/sidebar.html");
     await loadPartial("header-container", "assets/partials/header.html");
     await loadPartial("footer-container", "assets/partials/footer.html");
 
-    // 🔥 IMPORTANT: init AFTER DOM injection
     initializeSidebar();
     initializeNavigation();
     initializeAnimations();
     initializeFaq();
-
-    const pageContent = document.getElementById("page-content");
-
-    if (pageContent && pageContent.children.length > 0) {
-        initializeEvents();
-        return;
-    }
-
-    // Fallback for older SPA-style usage
-    const params = new URLSearchParams(window.location.search);
-    const page = params.get("page") || "hero";
-
-    const { loadPage } = await import("./router.js");
-    loadPage(page, false);
+    initializeEvents();
 });

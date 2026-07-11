@@ -3,7 +3,7 @@
         <div class="section-heading">
             <span class="eyebrow">Kaufkosten-Rechner</span>
             <h2>Ihre Angaben</h2>
-            <p>Wählen Sie Ihre Wunschregion, Ihren Immobilientyp und Ihre Finanzierung aus, um die geschätzten Nebenkosten direkt zu vergleichen.</p>
+            <p>Verschaffen Sie sich einen detaillierten Überblick über die Nebenkosten beim Immobilienkauf in Andalusien, angepasst an Ihre Wunschregion.</p>
         </div>
 
         <div class="calculator-shell">
@@ -12,12 +12,27 @@
 
                 <div class="input-group">
                     <label for="purchase-price">Kaufpreis der Immobilie (€)</label>
-                    <input type="number" id="purchase-price" placeholder="500000" min="0">
+                    <input type="number" id="purchase-price" placeholder="500000" value="500000" min="100000" max="3000000">
+                    <div class="price-presets">
+                        <button type="button" class="preset-btn" data-price="100000">100.000 €</button>
+                        <button type="button" class="preset-btn" data-price="500000">500.000 €</button>
+                        <button type="button" class="preset-btn" data-price="1000000">1.000.000 €</button>
+                        <button type="button" class="preset-btn" data-price="3000000">3.000.000+ €</button>
+                    </div>
                 </div>
 
                 <div class="input-group">
-                    <label for="region">Kaufregion auswählen</label>
-                    <select id="region"></select>
+                    <label>Käufer-Status</label>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" id="buyer-resident" name="buyer-status" value="resident" checked>
+                            <span>Resident (in Spanien)</span>
+                        </label>
+                        <label>
+                            <input type="radio" id="buyer-non-resident" name="buyer-status" value="non-resident">
+                            <span>Nicht-Resident</span>
+                        </label>
+                    </div>
                 </div>
 
                 <div class="input-group">
@@ -35,59 +50,72 @@
                 </div>
 
                 <div class="input-group">
-                    <label for="deposit">Eigenkapital (%)</label>
-                    <input type="number" id="deposit" value="20" min="0" max="100">
-                </div>
-
-                <div class="input-group">
-                    <label for="mortgage-years">Laufzeit (Jahre)</label>
-                    <select id="mortgage-years">
-                        <option>10</option>
-                        <option>15</option>
-                        <option>20</option>
-                        <option selected>25</option>
-                        <option>30</option>
-                    </select>
-                </div>
-
-                <div class="input-group">
-                    <label for="interest-rate">Zinssatz (%)</label>
-                    <input type="number" id="interest-rate" value="3.5" step="0.01">
-                </div>
-
-                <div class="calculator-actions">
-                    <button type="button" id="reset-calculator" class="btn btn-secondary">Zurücksetzen</button>
-                    <button type="button" id="export-pdf" class="btn btn-primary">PDF exportieren</button>
+                    <label>Finanzierung</label>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" id="financing-equity" name="financing" value="equity" checked>
+                            <span>Eigenkapital</span>
+                        </label>
+                        <label>
+                            <input type="radio" id="financing-mortgage" name="financing" value="mortgage">
+                            <span>Spanische Hypothek</span>
+                        </label>
+                    </div>
                 </div>
             </div>
 
             <div class="calculator-results">
                 <div class="result-card">
                     <h3>Geschätzte Nebenkosten</h3>
-                    <div class="result-row"><span>ITP</span><span id="itp-result">€0.00</span></div>
-                    <div class="result-row"><span>Mehrwertsteuer (VAT)</span><span id="vat-result">€0.00</span></div>
-                    <div class="result-row"><span>AJD</span><span id="ajd-result">€0.00</span></div>
-                </div>
-
-                <div class="result-card">
-                    <h3>Gebühren</h3>
-                    <div class="result-row"><span>Notar</span><span id="notary-result">€0.00</span></div>
-                    <div class="result-row"><span>Grundbuch</span><span id="registry-result">€0.00</span></div>
-                    <div class="result-row"><span>Anwaltskosten</span><span id="legal-result">€0.00</span></div>
-                </div>
-
-                <div class="result-card">
-                    <h3>Hypothek</h3>
-                    <div class="result-row"><span>Darlehensbetrag</span><span id="loan-result">€0.00</span></div>
-                    <div class="result-row"><span>Monatliche Rate</span><span id="mortgage-result">€0.00</span></div>
+                    <div class="result-row">
+                        <span>Steuern ITP (7%)</span>
+                        <span id="itp-result">€0.00</span>
+                    </div>
+                    <div class="result-row">
+                        <span>Notar &amp; Grundbuch (ca. 1,2%)</span>
+                        <span id="notary-registry-result">€0.00</span>
+                    </div>
+                    <div class="result-row">
+                        <span>Anwaltskosten (ca. 1% + IVA)</span>
+                        <span id="legal-result">€0.00</span>
+                    </div>
+                    <div class="result-row">
+                        <span>NIE &amp; Non-Resident Setup</span>
+                        <span id="nie-result">€0.00</span>
+                    </div>
+                    <div class="result-row">
+                        <span>Hypothekenkosten (ca. 1,5%)</span>
+                        <span id="mortgage-costs-result">€0.00</span>
+                    </div>
                 </div>
 
                 <div class="result-card summary-card">
-                    <h3>Zusammenfassung</h3>
-                    <div class="result-row"><span>Kaufpreis</span><span id="purchase-price-result">€0.00</span></div>
-                    <div class="result-row"><span>Gesamte Kaufkosten</span><span id="purchase-cost-result">€0.00</span></div>
-                    <div class="result-row"><span>Benötigtes Eigenkapital</span><span id="cash-required-result">€0.00</span></div>
-                    <div class="result-row"><span>Gesamtpreis</span><span id="grand-total-result">€0.00</span></div>
+                    <h3>Gesamte Nebenkosten in Andalusien</h3>
+                    <div class="result-row highlight-row">
+                        <span>Gesamtbetrag</span>
+                        <span id="total-costs-result">€0.00</span>
+                    </div>
+                    <div class="result-row">
+                        <span>Prozentsatz des Kaufpreises</span>
+                        <span id="total-costs-percent">0%</span>
+                    </div>
+                </div>
+
+                <div class="result-card secondary-card">
+                    <h3>Gesamtkapitalbedarf</h3>
+                    <div class="result-row highlight-row">
+                        <span>Benötigtes Kapital</span>
+                        <span id="grand-total-result">€0.00</span>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3>Laufende Gemeindekosten</h3>
+                    <p class="calculator-note">Bitte beachten Sie: Laufende kommunale Kosten wie die jährliche Grundsteuer (IBI), Müllgebühren (Basura) sowie die kommunale Wertzuwachssteuer (Plusvalía) bei einem späteren Verkauf variieren je nach Rathaus in Andalusien.</p>
+                </div>
+
+                <div class="disclaimer">
+                    <p><small>*Die Kaufsteuern (ITP/IVA/AJD) basieren auf den aktuell gültigen Sätzen für Andalusien. Die Berechnung dient nur zur Orientierung und ersetzt keine anwaltliche oder steuerliche Beratung.</small></p>
                 </div>
             </div>
         </div>

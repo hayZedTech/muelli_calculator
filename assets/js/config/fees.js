@@ -10,23 +10,13 @@ export const FEES = {
 
     },
 
-    notary: {
+    notaryRegistry: {
 
-        label: "Notarkosten",
+        label: "Notarkosten & Grundbuchgebühren",
 
-        percentage: 0.005,
+        percentage: 0.012,
 
         minimum: 600
-
-    },
-
-    registry: {
-
-        label: "Grundbuchgebühren",
-
-        percentage: 0.003,
-
-        minimum: 400
 
     }
 

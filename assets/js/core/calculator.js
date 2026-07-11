@@ -1,84 +1,58 @@
 import { calculateTaxes } from "./taxes.js";
 import { calculateFees } from "./fees.js";
-import { calculateMortgage } from "./mortgage.js";
 
 export function calculate(data) {
-
     const purchasePrice = Number(data.purchasePrice || 0);
-    const depositPercent = Number(data.depositPercent);
-    const interestRate = Number(data.interestRate);
-    const mortgageYears = Number(data.mortgageYears);
     const buyerStatus = data.buyerStatus || "resident";
+    const propertyType = data.propertyType || "resale";
     const financing = data.financing || "equity";
-    const zone = data.zone || "Chiclana";
 
     if (purchasePrice <= 0) {
-
         return {
             purchasePrice: 0,
-            depositPercent,
-            depositAmount: 0,
-            loanAmount: 0,
-            interestRate,
-            mortgageYears,
-            monthlyMortgage: 0,
             taxes: { itp: 0, vat: 0, ajd: 0 },
-            fees: { notary: 0, registry: 0, legal: 0 },
-            totalTaxes: 0,
-            totalFees: 0,
-            purchaseCosts: 0,
-            cashRequired: 0,
-            grandTotal: 0,
+            fees: { notaryRegistry: 0, legal: 0 },
             nieSetup: 0,
             mortgageCosts: 0,
-            zoneTotal: 0,
+            totalCosts: 0,
+            totalCostsPercent: 0,
+            grandTotal: 0,
             buyerStatus,
-            financing,
-            zone
+            propertyType,
+            financing
         };
-
     }
 
-    const depositAmount = purchasePrice * (depositPercent / 100);
-    const loanAmount = purchasePrice - depositAmount;
+    // Calculate taxes (ITP for resale, VAT+AJD for new)
+    const taxes = calculateTaxes(purchasePrice, "andalusia", propertyType);
 
-    const taxes = calculateTaxes(purchasePrice, data.region, data.propertyType);
+    // Calculate fees
     const fees = calculateFees(purchasePrice);
 
-    const monthlyMortgage = calculateMortgage(loanAmount, interestRate, mortgageYears);
-
-    const totalTaxes = taxes.itp + taxes.vat + taxes.ajd;
-    const totalFees = fees.notary + fees.registry + fees.legal;
-
+    // NIE setup (only for non-residents)
     const nieSetup = buyerStatus === "non-resident" ? 600 : 0;
-    const mortgageCosts = financing === "mortgage" ? loanAmount * 0.015 : 0;
-    const zoneAdjustment = zone === "Chiclana" ? 0 : purchasePrice * 0.002;
 
-    const purchaseCosts = totalTaxes + totalFees + nieSetup + mortgageCosts + zoneAdjustment;
-    const cashRequired = depositAmount + purchaseCosts;
-    const grandTotal = purchasePrice + purchaseCosts;
+    // Mortgage costs (1.5% of 70% of purchase price if mortgage financing)
+    const mortgageCosts = financing === "mortgage" ? purchasePrice * 0.70 * 0.015 : 0;
+
+    // Total costs
+    const totalCosts = taxes.itp + taxes.vat + taxes.ajd + fees.notaryRegistry + fees.legal + nieSetup + mortgageCosts;
+    const totalCostsPercent = ((totalCosts / purchasePrice) * 100).toFixed(1);
+
+    // Grand total (purchase price + all costs)
+    const grandTotal = purchasePrice + totalCosts;
 
     return {
         purchasePrice,
-        depositPercent,
-        depositAmount,
-        loanAmount,
-        interestRate,
-        mortgageYears,
-        monthlyMortgage,
         taxes,
         fees,
-        totalTaxes,
-        totalFees,
-        purchaseCosts,
-        cashRequired,
-        grandTotal,
         nieSetup,
         mortgageCosts,
-        zoneTotal: purchaseCosts,
+        totalCosts,
+        totalCostsPercent,
+        grandTotal,
         buyerStatus,
-        financing,
-        zone
+        propertyType,
+        financing
     };
-
 }
