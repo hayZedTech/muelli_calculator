@@ -30,11 +30,14 @@ export function initializeEvents() {
 
     function loadCalculator() {
         const saved = localStorage.getItem(STORAGE_KEY);
-        if (!saved) return;
+        if (!saved) {
+            purchasePrice.value = "100000";
+            return;
+        }
 
         try {
             const data = JSON.parse(saved);
-            purchasePrice.value = data.purchasePrice ?? "500000";
+            purchasePrice.value = data.purchasePrice ?? "100000";
 
             propertyTypes.forEach((radio) => {
                 radio.checked = radio.value === (data.propertyType ?? "resale");
@@ -47,6 +50,7 @@ export function initializeEvents() {
             });
         } catch (error) {
             console.error(error);
+            purchasePrice.value = "100000";
         }
     }
 
@@ -71,7 +75,7 @@ export function initializeEvents() {
     }
 
     function resetCalculator() {
-        purchasePrice.value = "500000";
+        purchasePrice.value = "100000";
         propertyTypes.forEach((radio) => {
             radio.checked = radio.value === "resale";
         });
